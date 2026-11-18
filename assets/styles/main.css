@@ -88,6 +88,7 @@
   --paragraph-font-size: 1.2rem;
   --root-header-font-size: 5rem;
   --section-header-font-size: 2.65rem;
+  --sub-section-header-font-size: 2rem;
   --table-of-contents-header-font-size: 2rem;
   --text-line-height: 1.35em;
 
@@ -124,11 +125,6 @@ body {
   padding: 0;
 }
 
-code {
-  font-family: "Fira Code Retina", monospace;
-  font-size: 1rem;
-}
-
 h1 {
   font-size: var(--root-header-font-size);
   margin-top: var(--root-header-top-margin);
@@ -139,6 +135,10 @@ h2,
 summary {
   font-size: var(--section-header-font-size);
   margin-top: var(--section-top-margin);
+}
+
+h3 {
+  font-size: var(--sub-section-header-font-size);
 }
 
 header {
@@ -197,6 +197,15 @@ ul {
 /*
  * Class-wide rules
  */
+.date-stamp {
+  margin-left: var(--section-indent-size);
+  margin-top: 0;
+}
+
+.first-header {
+  margin-bottom: 0;
+}
+
 .link {
   font-weight: bold;
   text-decoration: none;
@@ -228,6 +237,14 @@ ul {
   padding-top: 0;
   font-size: var(--table-of-contents-header-font-size);
   font-weight: bold;
+}
+
+.inline-list {
+  margin-top: 0;
+}
+
+.inline-list-header {
+  margin-bottom: 0;
 }
 
 /*
