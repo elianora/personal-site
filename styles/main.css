@@ -1,0 +1,246 @@
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("../fonts/AtkinsonHyperlegibleNext-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Fira Code Retina";
+  src: url("../fonts/FiraCode-Retina.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+ * Dark theme variables and globals
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /*
+     * Colors
+     */
+    --background-color: rgb(15, 23, 42);
+    --link-color: rgb(177, 174, 226);
+    --navbar-background-color: rgb(12,16,2);
+    --navbar-border-color: rgb(177, 174, 226);
+    --navbar-link-color: rgb(227, 219, 219);
+    --text-color: rgb(227, 219, 219);
+  }
+}
+
+/*
+ * Light theme variables and globals
+ */
+@media (prefers-color-scheme: light) {
+  :root {
+    /*
+     * Colors
+     */
+    --background-color: rgb(227, 219, 219);
+    --link-color: rgb(112, 107, 215);
+    --navbar-background-color: rgb(12,16,2);
+    --navbar-border-color: rgb(177, 174, 226);
+    --navbar-link-color: rgb(227, 219, 219);
+    --text-color: rgb(15, 23, 42);
+  }
+}
+
+/*
+ * Mobile layout variables and globals
+ */
+@media only screen and (max-width: 600px) {
+  :root {
+    /*
+     * Sizing
+     */
+    --header-y-size: 3.125rem;
+    --page-max-width: 96vw;
+    --page-x-margin: 2vw;
+    --page-x-padding: 1.2rem;
+  }
+}
+
+/*
+ * Desktop layout variables and globals
+ */
+@media only screen and (min-width: 601px) {
+  :root {
+    /*
+     * Sizing
+     */
+    --header-y-size: 3.125rem;
+    --page-max-width: 80vw;
+    --page-x-margin: 8vw;
+    --page-x-padding: 1.2rem;
+  }
+}
+
+/*
+ * Universal variables and globals
+ */
+:root {
+  /*
+   * Font sizing
+   */
+  --emphasized-font-size: 1.6rem;
+  --list-item-font-size: 1.125rem;
+  --paragraph-font-size: 1.2rem;
+  --root-header-font-size: 5rem;
+  --section-header-font-size: 2.65rem;
+  --table-of-contents-header-font-size: 2rem;
+  --text-line-height: 1.35em;
+
+  /*
+   * Margins and padding
+   */
+  --list-indent-size: 1.7rem;
+  --list-item-top-margin: 0.6rem;
+  --paragraph-y-margin: 1em;
+  --root-header-top-margin: 1em;
+  --section-indent-size: 1rem;
+  --section-top-margin: 0.8em;
+}
+
+/*
+ * Document-wide defaults
+ */
+html {
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font-family: "Atkinson Hyperlegible Next", sans-serif;
+  font-kerning: normal;
+  font-size: 16px;
+  hyphens: auto;
+  overflow-wrap: normal;
+  text-rendering: optimizeLegibility;
+}
+
+/*
+ * Element-wide rules
+ */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  font-family: "Fira Code Retina", monospace;
+  font-size: 1rem;
+}
+
+h1 {
+  font-size: var(--root-header-font-size);
+  margin-top: var(--root-header-top-margin);
+  margin-bottom: 0;
+}
+
+h2,
+summary {
+  font-size: var(--section-header-font-size);
+  margin-top: var(--section-top-margin);
+}
+
+header {
+  background-color: var(--navbar-background-color);
+  border-bottom: 0.063rem solid var(--navbar-border-color);
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  height: var(--header-y-size);
+  line-height: var(--header-y-size);
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+header > nav {
+  display: flex;
+  flex-direction: row;
+  margin: 0 var(--page-x-margin);
+  max-width: var(--page-max-width);
+  padding: 0 var(--page-x-padding);
+}
+
+li {
+  font-size: var(--list-item-font-size);
+  line-height: var(--text-line-height);
+  margin-top: var(--list-item-top-margin);
+}
+
+li > * {
+  vertical-align: middle;
+}
+
+main {
+  margin: 0 var(--page-x-margin);
+  max-width: var(--page-max-width);
+  padding: var(--page-x-padding);
+}
+
+p {
+  font-size: var(--paragraph-font-size);
+  line-height: var(--text-line-height);
+  margin: var(--paragraph-y-margin) 0;
+}
+
+section {
+  margin-left: var(--section-indent-size);
+}
+
+ul {
+  padding-left: var(--list-indent-size);
+  margin-top: var(--paragraph-y-margin);
+}
+
+/*
+ * Class-wide rules
+ */
+.link {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.contents-link {
+  color: var(--link-color);
+}
+
+.header-link {
+  color: var(--navbar-link-color);
+  font-size: var(--emphasized-font-size);
+}
+
+.subpage-link {
+  color: var(--link-color);
+  font-size: var(--section-header-font-size);
+  line-height: var(--section-header-font-size);
+}
+
+.content-disclosure,
+.table-of-contents {
+  margin-left: var(--section-indent-size);
+}
+
+.content-disclosure-summary,
+.table-of-contents-summary {
+  margin-top: 0;
+  padding-top: 0;
+  font-size: var(--table-of-contents-header-font-size);
+  font-weight: bold;
+}
+
+/*
+ * ID-specific rules
+ */
+#sign-off {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  margin-top: 1rem;
+}
+
+#signature {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 0;
+}

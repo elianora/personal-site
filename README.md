@@ -1,11 +1,18 @@
-# Pro-Human Repository Template
+# Elianora Rose's Personal Site
 
-A base template for repositories that wish to take a strong pro-human stance when it comes to artificial intelligence.
+The source code, markup, markdown, and assets of my personal site.
 
 ## Before You Get Started
 
-Before getting started, be sure to read [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) and [CONTRIBUTING.md](./CONTRIBUTING.md), each of which contains guidelines that must be understood before working on this project.
+Before getting started, be sure to read [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) and [CONTRIBUTING.md](./CONTRIBUTING.md), each of which contains guidelines that must be understood before working on this project. Note that these guidelines are merely for consistency with my other repositories.
 
-## Getting Started
+## Resources
 
-At the present, this repository is being prepared to reach a state where contribution is possible. Given only a single developer is contributing currently, this may take some time.
+The CSS-based code syntax highlighting is based on a modified and reduced [ft-syntax-highlight](https://github.com/soulshined/ft-syntax-highlight).
+
+## Licenses
+
+Note that [LICENSE](./LICENSE) is a combination of licenses (MIT AND OFL-1.1) that must both be adhered to. The relevant licenses for each are contained within [LICENSE.MIT](./LICENSE.MIT), [LICENSE.Atkinson.OFL-1.1](./LICENSE.Atkinson.OFL-1.1), [LICENSE.FiraCode.OFL-1.1](./LICENSE.FiraCode.OFL-1.1), the latter two of which are to comply with the following font licenses:
+
+- Braille Institute of America, Inc. for the "Atkinson" and "Hyperlegible" fonts
+- The Fira Code Project Authors for the "Fira Code" fonts
