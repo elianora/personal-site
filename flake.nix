@@ -87,27 +87,11 @@
                 fi
               '';
             };
-
-            personal-site = pkgs.stdenv.mkDerivation {
-              pname = "personal-site";
-              version = "1.0.0";
-              src = ./.;
-              nativeBuildInputs = [
-                jekyll
-              ];
-
-              installPhase = ''
-                export JEKYLL_ENV=production
-                ${jekyll}/bin/jekyll build -d $out
-                rm -rf vendor
-              '';
-            };
           in
           {
             bundix = bundix-cli;
             bundle = bundle-cli;
             jekyll = jekyll;
-            personal-site = personal-site;
             default = jekyll;
           };
 
