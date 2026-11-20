@@ -92,14 +92,9 @@
               pname = "personal-site";
               version = "1.0.0";
               src = ./.;
-              nativeBuildInputs = [
-                jekyll
-              ];
-
+              buildInputs = deps;
               installPhase = ''
-                export JEKYLL_ENV=production
-                ${jekyll}/bin/jekyll build -d $out
-                rm -rf vendor
+                bundler exec jekyll build -d $out
               '';
             };
           in
