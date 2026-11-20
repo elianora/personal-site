@@ -49,8 +49,6 @@ exclude:
   - Gemfile.lock
   - gemset.nix
   - default.nix
-  - LICENSE
-  - LICENSE*
   - CLAUDE.md
   - AGENTS.md
   - GEMINI.md
