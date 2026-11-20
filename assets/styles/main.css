@@ -298,6 +298,13 @@ nav > div:hover > .header-link {
   margin-bottom: 0;
 }
 
+.theme-change-icon {
+  position: relative;
+  top: 12.5%;
+  height: var(--text-line-height);
+  width: var(--text-line-height);
+}
+
 /*
  * ID-specific rules
  */

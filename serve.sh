@@ -6,6 +6,6 @@ bundle config set path vendor
 bundle config set --local force_ruby_platform true
 bundle cache
 bundix
-bundler exec jekyll serve --watch
+bundler exec jekyll serve --watch --drafts
 rm -rf vendor
 rm -rf ~/.cache/bundix
