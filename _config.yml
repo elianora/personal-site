@@ -46,6 +46,7 @@ exclude:
   - .jekyll-cache/
   - gemfiles/
   - .vscode/
+  - result/
   - Gemfile
   - Gemfile.lock
   - gemset.nix
