@@ -1,0 +1,102 @@
+/*
+ * Dark theme variables and globals
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --code-background-color: rgb(40, 42, 54);
+    --code-comment-color: rgb(98, 114, 164);
+    --code-text-color: rgb(248, 248, 242);
+    --code-keywords-color: 	rgb(255, 121, 198);
+    --code-strings-color: rgb(241, 250, 140);
+    --code-numbers-and-booleans-color: rgb(255, 184, 108);
+  }
+}
+
+[data-theme="dark"] {
+  --code-background-color: rgb(40, 42, 54);
+  --code-comment-color: rgb(98, 114, 164);
+  --code-text-color: rgb(248, 248, 242);
+  --code-keywords-color: 	rgb(255, 121, 198);
+  --code-strings-color: rgb(241, 250, 140);
+  --code-numbers-and-booleans-color: rgb(255, 184, 108);
+}
+
+/*
+ * Light theme variables and globals
+ */
+@media (prefers-color-scheme: light) {
+  :root {
+    --code-background-color: rgb(255, 251, 235);
+    --code-comment-color: rgb(108, 102, 75);
+    --code-text-color: rgb(31, 31, 31);
+    --code-keywords-color: rgb(163, 20, 77);
+    --code-strings-color: rgb(132, 110, 21);
+    --code-numbers-and-booleans-color: rgb(163, 77, 20);
+  }
+}
+
+[data-theme="light"] {
+  --code-background-color: rgb(255, 251, 235);
+  --code-comment-color: rgb(108, 102, 75);
+  --code-text-color: rgb(31, 31, 31);
+  --code-keywords-color: rgb(163, 20, 77);
+  --code-strings-color: rgb(132, 110, 21);
+  --code-numbers-and-booleans-color: rgb(163, 77, 20);
+}
+
+/*
+ * Mobile layout variables and globals
+ */
+@media only screen and (max-width: 600px) {
+  :root {
+    --code-x-margin-size: 0;
+  }
+}
+
+/*
+ * Desktop layout variables and globals
+ */
+@media only screen and (min-width: 601px) {
+  :root {
+    --code-x-margin-size: var(--section-indent-size);
+  }
+}
+
+/*
+ * Universal variables
+ */
+:root {
+  --code-font-family: "Fira Code Retina", monospace;
+}
+
+.highlight {
+  background-color: var(--code-background-color);
+  border-radius: 0.626rem;
+  color: var(--code-text-color);
+  font-family: var(--code-font-family);
+  font-size: 1rem;
+  margin-left: var(--code-x-margin-size);
+  margin-right: var(--code-x-margin-size);
+  margin-top: 0;
+  overflow-x: scroll;
+  padding-left: 0.625em;
+  padding-right: 0.625em;
+}
+
+code.language-nix .c {
+  color: var(--code-comment-color);
+}
+
+code.language-nix .nv {
+  color: var(--code-keywords-color);
+}
+
+code.language-nix .s2,
+code.language-nix .sx {
+  color: var(--code-strings-color);
+}
+
+code.language-nix .mi,
+code.language-nix .kc {
+  color: var(--code-numbers-and-booleans-color);
+}

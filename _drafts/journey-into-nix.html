@@ -1,0 +1,213 @@
+---
+title: Journey into Nix
+layout: default
+---
+{% include post-title.html %}
+<section id="table-of-contents">
+  <details open="true">
+    <summary>Contents</summary>
+    <p>
+      I am going to lead this post off with a brief description that may help you decipher if this post is
+      for you or not. If the following describes your use case, you can have a solid idea of whether there is
+      value in proceeding:
+    </p>
+    <p>
+      "<b>I want to use a declarative, functional programming language to control the software installed
+      across one or more of my machines, which will result in all machines involved having any version of any
+      software pinned to identical states to ensure reproducibility and consistency.</b>"
+    </p>
+    <p>
+      If that doesn't sound appealing or is unclear to you, this may not be the post for you, and that's fine -
+      this is going to be a step through the basics as I learned them to recently configure all of my systems,
+      including some things I learned the hard way and have smoothed out to write this.
+    </p>
+    <details class="table-of-contents">
+      <summary class="table-of-contents-summary">Sections</summary>
+      <ul>
+        <li>
+          <a class="link contents-link" href="#what-are-nix-nixpkgs-and-nixos">What Are Nix, Nixpkgs, and NixOS?</a>
+        </li>
+      </ul>
+    </details>
+  </details>
+</section>
+<section id="what-are-nix-nixpkgs-and-nixos">
+  <details open="true">
+    <summary>What Are Nix, Nixpkgs, and NixOS?</summary>
+    <p>
+      So, let's get started - to really understand the value of these tools, first you have to actually define
+      what they are and are not. If you'd like something that explains this better than I can,
+      <a class="link contents-link" target="_blank" href="https://www.youtube.com/watch?v=5D3nUU1OVx8">this video by Surma</a>
+      is an excellent resource! If you watch the video, feel free to skip this first section.
+    </p>
+    <h3 class="inline-list-header">
+      Nix is:
+    </h3>
+    <ul class="inline-list">
+      <li>
+        A domain-specific programming language that is declarative, functional, dynamically typed, and lazily
+        evaluated, inspired by Haskell as described in <a class="link contents-link" href="https://edolstra.github.io/pubs/phd-thesis.pdf" target="_blank">Eelco Dolstra's PhD thesis</a>
+      </li>
+      <li>Meant to express immutable operating system state</li>
+      <li>Going to treat file and system paths as first-class citizens</li>
+      <li>
+        Going to place file and system paths in a store, with files in their ordinary location being replaced by
+        symbolic links to that store
+      </li>
+      <li>
+        Going to track the hashes of any resulting output so that dependencies more reliably can be considered
+        identical and atomic across multiple systems, allowing for simple system rollbacks
+      </li>
+    </ul>
+    <h3 class="inline-list-header">
+      Nix is not:
+    </h3>
+    <ul class="inline-list">
+      <li>A system with a simple command-line tool for installing packages permanently</li>
+      <li>
+        A package manager in the traditional sense, as it seeks to avoid the pitfalls of common package
+        management solutions such as binaries or build instructions with no guarantee of consistent tooling
+      </li>
+      <li>
+        Mutable by default - all Nix-generated output is treated as readonly unless you explicitly change a flag
+        to make it editable (and you likely shouldn't)
+      </li>
+      <li>
+        Equally space efficient to traditional package management, as you store dependencies and their sources
+        on disk to maintain atomicity and the ability to easily perform a rollback in system state
+      </li>
+    </ul>
+    <h3 class="inline-list-header">
+      Nixpkgs is:
+    </h3>
+    <ul class="inline-list">
+      <li>
+        A repository of pre-written and bundled sets of Nix language code for installing applications without
+        large amounts of work on the part of the user configuring their system(s) required
+      </li>
+      <li>
+        A binary cache for any given number of CPU architectures and operating systems, allowing for more
+        efficient build process that can skip steps in cases where the full-on compilation can be guaranteed to
+        build the identical output as the binary
+      </li>
+      <li>A source repository for NixOS</li>
+    </ul>
+    <h3 class="inline-list-header">
+      NixOS is:
+    </h3>
+    <ul class="inline-list">
+      <li>A Linux distribution</li>
+      <li>
+        Managed from the kernel up via Nix, meaning the entire non-home directory parts of the system are
+        treated as immutable
+      </li>
+      <li>
+        Designed for reproducibility and change tracking via a repository, ensuring that any machine being
+        managed via the configuration will have identical settings and software, and that rollbacks are as
+        simple as returning to a previous atomic state
+      </li>
+    </ul>
+  </details>
+</section>
+<section id="test-code-area">
+  <details open="true">
+    <summary>Test Code Area</summary>
+    <p>Code here</p>
+{% highlight nix %}
+{ osConfig, ... }:
+
+{
+  imports = [
+    ./codium.nix
+    ./firefox.nix
+    ./halloy.nix
+    ./plasma
+  ];
+
+  # This is a comment
+  config = {
+    display-name = "Elianora Rose";
+    home.uid = 1000;
+    software = {
+      art-and-image-editing.krita.enable = !osConfig.headless;
+      browsers = {
+        firefox.enable = !osConfig.headless;
+        vivaldi.enable = !osConfig.headless;
+      };
+
+      core = {
+        compression-utils.enable = true;
+        efibootmgr.enable = true;
+        eza.enable = true;
+        fastfetch.enable = true;
+        git = {
+          enable = true;
+          email = "developer@elianorarose.com";
+          name = "Elianora Rose";
+        };
+
+        gnupg.enable = true;
+        jq.enable = true;
+        nix-utils.enable = true;
+        search-utils.enable = true;
+        starship.enable = true;
+        system-monitoring-utils.enable = true;
+        text-utils.enable = true;
+        tmux.enable = true;
+        wget.enable = true;
+        yq.enable = true;
+      };
+
+      desktop-environments.plasma = {
+        enable = !osConfig.headless;
+        kde-connect.enable = !osConfig.headless;
+      };
+
+      development-tools = {
+        editors = {
+          codium.enable = !osConfig.headless;
+          rider.enable = !osConfig.headless;
+          vim.enable = true;
+        };
+
+        languages = {
+          cpp.enable = true;
+          dotnet.enable = true;
+          nix.enable = true;
+          node.enable = true;
+          python.enable = true;
+          rust.enable = true;
+        };
+      };
+
+      filesystems.gparted.enable = !osConfig.headless;
+      fonts = {
+        dejavu.enable = true;
+        fira-code.enable = true;
+        liberation.enable = true;
+        powerline.enable = true;
+      };
+
+      media-players.vlc.enable = !osConfig.headless;
+      messengers = {
+        discord.enable = !osConfig.headless;
+        halloy.enable = !osConfig.headless;
+      };
+
+      networking.winbox.enable = !osConfig.headless;
+      office-and-notes = {
+        libreoffice.enable = !osConfig.headless;
+        obsidian.enable = !osConfig.headless;
+      };
+
+      recording-and-streaming = {
+        obs-studio.enable = osConfig.recording.has-capture-card && !osConfig.headless;
+        open-deck.enable = osConfig.recording.has-stream-deck && !osConfig.headless;
+        tenacity.enable = osConfig.audio.has-recording-device && !osConfig.headless;
+      };
+    };
+  };
+}
+{% endhighlight %}
+  </details>
+</section>
