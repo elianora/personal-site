@@ -16,3 +16,14 @@ target
 
 # node modules
 node_modules
+
+# Backed up files
+.backup
+
+# Jekyll
+_site
+.bundle
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
