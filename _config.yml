@@ -45,10 +45,13 @@ exclude:
   - .sass-cache/
   - .jekyll-cache/
   - gemfiles/
+  - .vscode/
   - Gemfile
   - Gemfile.lock
   - gemset.nix
   - default.nix
+  - flake.nix
+  - flake.lock
   - CLAUDE.md
   - AGENTS.md
   - GEMINI.md
